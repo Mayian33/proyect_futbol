@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+
+<body class="flex flex-col items-center justify-center min-h-screen bg-gray-800 p-4">
+    <h2 class="text-white font-bold text-6xl mb-8 title">Iniciar sesión</h2>
+    <form id="loginForm" action="loginInsert.php" method="POST" class="w-full max-w-3xl">
+        <div class="mb-6">
+            <label class="block text-white text-lg font-bold mb-2" for="email">Email:</label>
+            <input type="email" id="email"
+                class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                required placeholder="Introduce tu email">
+        </div>
+        <div class="mb-6">
+            <label class="block text-white text-lg font-bold mb-2" for="password">Contraseña:</label>
+            <input type="password" id="pass"
+                class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                required placeholder="Introduce tu contraseña">
+        </div>
+        <button id="inicio" type="button"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded w-full text-xl">Login</button>
+        <div class="flex flex-col items-center my-8">
+            <hr class="w-96 border-t border-white mb-8">
+            <h3 class="text-white mb-2 text-lg">¿Aún no tienes cuenta?</h3>
+            <button id="register" type="button"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                <a href="login.html" class="block">Registrate</a>
+            </button>
+        </div>
+    </form>
+
+    <script>
+        // Función de validación
+        function validateForm() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("pass").value;
+
+            // Validación de email
+            if (!/\S+@\S+\.\S+/.test(email)) {
+                alert("Por favor, introduce un correo electrónico válido.");
+                return false;
+            }
+
+            // Validación de contraseña
+            if (password.trim() === "") {
+                alert("La contraseña no puede estar vacía.");
+                return false;
+            }
+
+            return true; // Pasa la validación
+        }
+
+        document.getElementById("inicio").addEventListener("click", function () {
+            if (validateForm()) {
+                document.getElementById("loginForm").submit();
+            }
+        });
+
+        // Redirigir al registro
+        document.getElementById("register").addEventListener("click", function (event) {
+            if (validateForm()) {
+                window.location.href = "registro.html";
+            }
+        });
+    </script>
+</body>
+
+</html>
